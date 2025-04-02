@@ -30,8 +30,13 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  dart_eval: ^0.7.10
+  dart_eval:
+    git:
+      url: https://github.com/Odinachi/dart_eval.git
+      ref: master
   flutter_highlight: ^0.7.0
+  flutter_code_editor: ^0.3.3
+
 
 
   # The following adds the Cupertino Icons font to your application.
