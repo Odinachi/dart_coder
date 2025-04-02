@@ -73,8 +73,11 @@ class _DartCompilerAppState extends State<DartCompilerApp>
         _outputNotifier.value = "Error: ${e.toString()}";
       }
     }
+    _unfocus();
     _tabController.animateTo(1);
   }
+
+  void _unfocus() => FocusScope.of(context).unfocus();
 
   @override
   Widget build(BuildContext context) {
@@ -130,55 +133,58 @@ class _DartCompilerAppState extends State<DartCompilerApp>
           ),
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 10.0),
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(bottom: 10.0),
-              child: TabBar(
-                controller: _tabController,
-                splashFactory: NoSplash.splashFactory,
-                indicator: const BoxDecoration(),
-                dividerColor: Colors.transparent,
-                tabs: const [
-                  Text("Code"),
-                  Text("Output"),
-                ],
+      body: GestureDetector(
+        onTap: _unfocus,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 10.0),
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(bottom: 10.0),
+                child: TabBar(
+                  controller: _tabController,
+                  splashFactory: NoSplash.splashFactory,
+                  indicator: const BoxDecoration(),
+                  dividerColor: Colors.transparent,
+                  tabs: const [
+                    Text("Code"),
+                    Text("Output"),
+                  ],
+                ),
               ),
-            ),
-            Expanded(
-              child: TabBarView(controller: _tabController, children: [
-                ValueListenableBuilder(
-                    valueListenable: isDarkTheme,
-                    builder: (_, isDark, __) {
-                      return CodeTheme(
-                        data: CodeThemeData(
-                            styles: isDark ? nordTheme : atomOneLightTheme),
-                        child: CodeField(
-                          expands: true,
-                          gutterStyle: const GutterStyle(
-                            showFoldingHandles: false,
-                            width: 70,
+              Expanded(
+                child: TabBarView(controller: _tabController, children: [
+                  ValueListenableBuilder(
+                      valueListenable: isDarkTheme,
+                      builder: (_, isDark, __) {
+                        return CodeTheme(
+                          data: CodeThemeData(
+                              styles: isDark ? nordTheme : atomOneLightTheme),
+                          child: CodeField(
+                            expands: true,
+                            gutterStyle: const GutterStyle(
+                              showFoldingHandles: false,
+                              width: 70,
+                            ),
+                            controller: controller,
                           ),
-                          controller: controller,
-                        ),
-                      );
-                    }),
-                ValueListenableBuilder(
-                    valueListenable: _outputNotifier,
-                    builder: (_, output, __) {
-                      return SingleChildScrollView(
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 20, vertical: 20),
-                          child: Text(output),
-                        ),
-                      );
-                    })
-              ]),
-            ),
-          ],
+                        );
+                      }),
+                  ValueListenableBuilder(
+                      valueListenable: _outputNotifier,
+                      builder: (_, output, __) {
+                        return SingleChildScrollView(
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 20, vertical: 20),
+                            child: Text(output),
+                          ),
+                        );
+                      })
+                ]),
+              ),
+            ],
+          ),
         ),
       ),
     );
