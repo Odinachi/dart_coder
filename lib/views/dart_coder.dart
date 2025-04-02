@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:dart_eval/dart_eval.dart';
+import 'package:dart_style/dart_style.dart';
 import 'package:dartcoder/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_code_editor/flutter_code_editor.dart';
@@ -98,6 +99,16 @@ class _DartCompilerAppState extends State<DartCompilerApp>
         centerTitle: true,
         title: const Text('Dart Coder'),
         actions: [
+          GestureDetector(
+            onTap: () {
+              try {
+                controller.text = DartFormatter().format(controller.fullText);
+              } catch (_) {}
+            },
+            child: Container(
+                margin: const EdgeInsets.only(right: 20),
+                child: const Icon(Icons.brush)),
+          ),
           ValueListenableBuilder(
               valueListenable: isDarkTheme,
               builder: (_, isDark, __) {
@@ -145,7 +156,7 @@ class _DartCompilerAppState extends State<DartCompilerApp>
                           expands: true,
                           gutterStyle: const GutterStyle(
                             showFoldingHandles: false,
-                            width: 40,
+                            width: 70,
                           ),
                           controller: controller,
                         ),
