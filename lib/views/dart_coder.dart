@@ -118,11 +118,14 @@ class _DartCompilerAppState extends State<DartCompilerApp>
                     },
                     child: Icon(isDark ? Icons.sunny : Icons.dark_mode));
               }),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.0),
-            child: Icon(
-              Icons.play_arrow,
-              size: 30,
+          GestureDetector(
+            onTap: _runCode,
+            child: const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20.0),
+              child: Icon(
+                Icons.play_arrow,
+                size: 30,
+              ),
             ),
           ),
         ],
