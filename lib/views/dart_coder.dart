@@ -21,9 +21,7 @@ class DartCompilerApp extends StatefulWidget {
 class _DartCompilerAppState extends State<DartCompilerApp>
     with SingleTickerProviderStateMixin {
   final controller = CodeController(
-    text: '''import 'dart:math';  
-    
-void main() {
+    text: '''void main() {
   print("Hello, Dart Coder!");
 }''',
     language: dart,
