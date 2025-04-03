@@ -21,9 +21,6 @@ class DartCompilerApp extends StatefulWidget {
 class _DartCompilerAppState extends State<DartCompilerApp>
     with SingleTickerProviderStateMixin {
   final controller = CodeController(
-    text: '''void main() {
-  print("Hello, Dart Coder!");
-}''',
     language: dart,
   );
 
@@ -34,11 +31,15 @@ class _DartCompilerAppState extends State<DartCompilerApp>
 
   final editor = TextEditor();
 
-  // String _lastSavedText = "";
   Timer? _debounce;
+
+  final baseCode = '''void main() {
+  print("Hello, Dart Coder!");
+}''';
 
   @override
   void initState() {
+    controller.text = baseCode;
     editor.setText(controller.fullText);
     _tabController = TabController(length: 2, vsync: this)
       ..addListener(_listen);
@@ -218,8 +219,17 @@ class _DartCompilerAppState extends State<DartCompilerApp>
                     },
                     child: Icon(isDark ? Icons.sunny : Icons.dark_mode));
               }),
-          GestureDetector(
-            onTap: () {},
+          PopupMenuButton(
+            initialValue: null,
+            onSelected: (v) {
+              if (v == "clear") {
+                editor.setText(baseCode);
+                controller.text = baseCode;
+              }
+            },
+            itemBuilder: (BuildContext context) => <PopupMenuEntry>[
+              const PopupMenuItem(value: "clear", child: Text('Clear')),
+            ],
             child: const Padding(
               padding: EdgeInsets.symmetric(horizontal: 20.0),
               child: Icon(
