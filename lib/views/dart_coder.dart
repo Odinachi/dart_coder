@@ -19,7 +19,10 @@ class DartCompilerApp extends StatefulWidget {
 class _DartCompilerAppState extends State<DartCompilerApp>
     with SingleTickerProviderStateMixin {
   final controller = CodeController(
-    text: '''void main() {
+    text: '''
+    import 'dart:math';  import 'dart:async';import 'dart:math'; import 'dart:math';
+    
+    void main() {
   print("Hello, Dart Coder!");
 }''',
     language: dart,
@@ -59,11 +62,21 @@ class _DartCompilerAppState extends State<DartCompilerApp>
         () async {
           final result =
               program.executeLib('package:dart_coder/main.dart', 'main');
+
           if (result is Future) {
             await result;
           }
         },
         zoneSpecification: ZoneSpecification(
+          handleUncaughtError: (self, zone, error, _, stackTrace) {
+            _outputNotifier.value += 'Uncaught Error: $error\n';
+            _outputNotifier.value += 'Stack Trace: $stackTrace\n';
+          },
+          errorCallback: (self, zone, error, _, stackTrace) {
+            _outputNotifier.value += 'Uncaught Error: $error\n';
+            _outputNotifier.value += 'Stack Trace: $stackTrace\n';
+            return null;
+          },
           print: (self, parent, zone, line) {
             _outputNotifier.value += '$line\n';
           },
@@ -75,18 +88,28 @@ class _DartCompilerAppState extends State<DartCompilerApp>
     }
   }
 
+  String beautify(String i) {
+    final importRegex = RegExp(r'import\s+[^;]+;', multiLine: true);
+
+    final imports =
+        importRegex.allMatches(i).map((m) => m.group(0)!.trim()).toSet();
+
+    String cleanedCode = i.replaceAll(importRegex, '').trim();
+
+    String formattedCode;
+    try {
+      formattedCode = DartFormatter().format(cleanedCode);
+    } catch (_) {
+      formattedCode = cleanedCode;
+    }
+
+    return '${imports.join("\n")}\n\n$formattedCode';
+  }
+
   void _unfocus() => FocusScope.of(context).unfocus();
 
   @override
   Widget build(BuildContext context) {
-    controller.text = """
-    
-void main() async {
-  print("Starting...");
-  await Future.delayed(Duration(seconds: 2));
-  print("Finished!");
-}
-    """;
     return Scaffold(
       floatingActionButton: _tabController.index == 0
           ? GestureDetector(
@@ -110,9 +133,8 @@ void main() async {
         actions: [
           GestureDetector(
             onTap: () {
-              try {
-                controller.text = DartFormatter().format(controller.fullText);
-              } catch (_) {}
+              // controller.text = DartFormatter().format(controller.fullText);
+              controller.text = beautify(controller.text);
             },
             child: Container(
                 margin: const EdgeInsets.only(right: 20),
