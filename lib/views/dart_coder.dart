@@ -44,43 +44,49 @@ class _DartCompilerAppState extends State<DartCompilerApp>
 
   Future<void> _runCode() async {
     _tabController.animateTo(1);
-    final outputBuffer = StringBuffer();
+    _unfocus();
+    _outputNotifier.value = '';
 
     try {
       final compiler = Compiler();
-      final program = compiler.compile({
+      final program = compiler.compileWriteAndLoad({
         'dart_coder': {
           'main.dart': controller.fullText,
         }
       });
 
-      final runtime = Runtime.ofProgram(program);
-
       await runZoned(
-        () async => runtime.executeLib('package:dart_coder/main.dart', 'main'),
+        () async {
+          final result =
+              program.executeLib('package:dart_coder/main.dart', 'main');
+          if (result is Future) {
+            await result;
+          }
+        },
         zoneSpecification: ZoneSpecification(
           print: (self, parent, zone, line) {
-            outputBuffer.writeln(line);
+            _outputNotifier.value += '$line\n';
           },
         ),
       );
-
-      _outputNotifier.value = outputBuffer.toString().trim();
     } catch (e) {
-      if (e is CompileError) {
-        _outputNotifier.value = e.message;
-      } else {
-        _outputNotifier.value = "Error: ${e.toString()}";
-      }
+      _outputNotifier.value =
+          e is CompileError ? e.message : "Error: ${e.toString()}";
     }
-    _unfocus();
-    _tabController.animateTo(1);
   }
 
   void _unfocus() => FocusScope.of(context).unfocus();
 
   @override
   Widget build(BuildContext context) {
+    controller.text = """
+    
+void main() async {
+  print("Starting...");
+  await Future.delayed(Duration(seconds: 2));
+  print("Finished!");
+}
+    """;
     return Scaffold(
       floatingActionButton: _tabController.index == 0
           ? GestureDetector(
@@ -122,11 +128,11 @@ class _DartCompilerAppState extends State<DartCompilerApp>
                     child: Icon(isDark ? Icons.sunny : Icons.dark_mode));
               }),
           GestureDetector(
-            onTap: _runCode,
+            onTap: () {},
             child: const Padding(
               padding: EdgeInsets.symmetric(horizontal: 20.0),
               child: Icon(
-                Icons.play_arrow,
+                Icons.more_vert,
                 size: 30,
               ),
             ),
@@ -158,13 +164,18 @@ class _DartCompilerAppState extends State<DartCompilerApp>
                       return CodeTheme(
                         data: CodeThemeData(
                             styles: isDark ? nordTheme : atomOneLightTheme),
-                        child: CodeField(
-                          expands: true,
-                          gutterStyle: const GutterStyle(
-                            showFoldingHandles: false,
-                            width: 70,
+                        child: Container(
+                          color: isDark
+                              ? const Color(0xff2E3440)
+                              : const Color(0xfffafafa),
+                          child: CodeField(
+                            expands: true,
+                            gutterStyle: const GutterStyle(
+                              showFoldingHandles: false,
+                              width: 70,
+                            ),
+                            controller: controller,
                           ),
-                          controller: controller,
                         ),
                       );
                     }),
