@@ -103,7 +103,7 @@ class _DartCompilerAppState extends State<DartCompilerApp>
       formattedCode = cleanedCode;
     }
 
-    return '${imports.join("\n")}\n\n$formattedCode';
+    return '${imports.join("\n")}${imports.isNotEmpty ? "\n\n" : ""}$formattedCode';
   }
 
   void _unfocus() => FocusScope.of(context).unfocus();
