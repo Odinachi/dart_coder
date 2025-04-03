@@ -9,6 +9,8 @@ import 'package:flutter_highlight/themes/atom-one-light.dart';
 import 'package:flutter_highlight/themes/nord.dart';
 import 'package:highlight/languages/dart.dart';
 
+import '../helpers/text_editor.dart';
+
 class DartCompilerApp extends StatefulWidget {
   const DartCompilerApp({super.key});
 
@@ -19,21 +21,27 @@ class DartCompilerApp extends StatefulWidget {
 class _DartCompilerAppState extends State<DartCompilerApp>
     with SingleTickerProviderStateMixin {
   final controller = CodeController(
-    text: '''
-    import 'dart:math';  import 'dart:async';import 'dart:math'; import 'dart:math';
+    text: '''import 'dart:math';  
     
-    void main() {
+void main() {
   print("Hello, Dart Coder!");
 }''',
     language: dart,
   );
+
   final _outputNotifier = ValueNotifier<String>('');
   late final TabController _tabController;
 
   void _listen() => setState(() {});
 
+  final editor = TextEditor();
+
+  // String _lastSavedText = "";
+  Timer? _debounce;
+
   @override
   void initState() {
+    editor.setText(controller.fullText);
     _tabController = TabController(length: 2, vsync: this)
       ..addListener(_listen);
     super.initState();
@@ -42,7 +50,24 @@ class _DartCompilerAppState extends State<DartCompilerApp>
   @override
   void dispose() {
     _tabController.removeListener(_listen);
+    _debounce?.cancel();
     super.dispose();
+  }
+
+  bool _isSubstantialChange(String oldText, String newText) {
+    if (newText.trim() == oldText.trim()) return false;
+    if ((newText.length - oldText.length).abs() < 5) return false;
+    return true;
+  }
+
+  void _onTextChanged(String newText) {
+    if (_debounce?.isActive ?? false) _debounce!.cancel();
+
+    _debounce = Timer(const Duration(milliseconds: 500), () {
+      if (_isSubstantialChange(editor.text, newText)) {
+        editor.setText(newText);
+      }
+    });
   }
 
   Future<void> _runCode() async {
@@ -128,6 +153,52 @@ class _DartCompilerAppState extends State<DartCompilerApp>
             )
           : null,
       appBar: AppBar(
+        leadingWidth: 90,
+        leading: ValueListenableBuilder(
+            valueListenable: editor.state,
+            builder: (_, state, __) {
+              return Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  SizedBox(
+                    width: 20,
+                  ),
+                  GestureDetector(
+                    onTap: state.canUndo
+                        ? () {
+                            editor.undo();
+                            controller.text = editor.text;
+                          }
+                        : null,
+                    child: Icon(
+                      color: state.canUndo
+                          ? null
+                          : Theme.of(context).iconTheme.color?.withOpacity(.5),
+                      Icons.undo,
+                      size: 30,
+                    ),
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  GestureDetector(
+                    onTap: state.canRedo
+                        ? () {
+                            editor.redo();
+                            controller.text = editor.text;
+                          }
+                        : null,
+                    child: Icon(
+                      color: state.canRedo
+                          ? null
+                          : Theme.of(context).iconTheme.color?.withOpacity(.5),
+                      Icons.redo,
+                      size: 30,
+                    ),
+                  ),
+                ],
+              );
+            }),
         centerTitle: true,
         title: const Text('Dart Coder'),
         actions: [
@@ -192,6 +263,7 @@ class _DartCompilerAppState extends State<DartCompilerApp>
                               : const Color(0xfffafafa),
                           child: CodeField(
                             expands: true,
+                            onChanged: _onTextChanged,
                             gutterStyle: const GutterStyle(
                               showFoldingHandles: false,
                               width: 70,

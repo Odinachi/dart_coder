@@ -24,7 +24,7 @@ final ThemeData lightTheme = ThemeData(
       borderSide: BorderSide(color: Colors.blue),
     ),
   ),
-  iconTheme: const IconThemeData(color: Colors.blue),
+  iconTheme: const IconThemeData(color: Colors.white),
   tabBarTheme: const TabBarTheme(
     labelColor: Colors.blue,
     unselectedLabelColor: Colors.black54,
@@ -58,7 +58,7 @@ final darkTheme = ThemeData(
       borderSide: BorderSide(color: Colors.blueGrey),
     ),
   ),
-  iconTheme: const IconThemeData(color: Colors.blueGrey),
+  iconTheme: const IconThemeData(color: Colors.white),
   tabBarTheme: const TabBarTheme(
     labelColor: Colors.white,
     unselectedLabelColor: Colors.white70,
