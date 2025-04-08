@@ -70,3 +70,13 @@ class TextEditorState {
     required this.canRedo,
   });
 }
+
+String getPreviousLine(String text, int offset) {
+  final lines = text.substring(0, offset).split('\n');
+  return lines.isNotEmpty ? lines.last : '';
+}
+
+String getLeadingSpaces(String line) {
+  final match = RegExp(r'^(\s*)').firstMatch(line);
+  return match?.group(0) ?? '';
+}

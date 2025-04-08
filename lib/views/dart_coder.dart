@@ -43,6 +43,34 @@ class _DartCompilerAppState extends State<DartCompilerApp>
     editor.setText(controller.fullText);
     _tabController = TabController(length: 2, vsync: this)
       ..addListener(_listen);
+
+    controller.addListener(() {
+      final text = controller.text;
+      final selection = controller.selection;
+
+      if (text.isNotEmpty &&
+          selection.baseOffset > 1 &&
+          selection.baseOffset <= text.length &&
+          text[selection.baseOffset - 1] == '\n') {
+        // Check for newline insertion
+        final prevLine = getPreviousLine(text, selection.baseOffset);
+        final leadingSpaces = getLeadingSpaces(prevLine);
+
+        // Insert two spaces + whatever indent the previous line had
+        final newText = text.replaceRange(
+          selection.baseOffset,
+          selection.baseOffset,
+          '$leadingSpaces  ', // you can replace with '\t' if you prefer real tabs
+        );
+
+        controller.value = TextEditingValue(
+          text: newText,
+          selection: TextSelection.collapsed(
+            offset: selection.baseOffset + 2,
+          ),
+        );
+      }
+    });
     super.initState();
   }
 
