@@ -24,7 +24,7 @@ class _DartCompilerAppState extends State<DartCompilerApp>
     language: dart,
   );
 
-  final _outputNotifier = ValueNotifier<String>('');
+  final _outputNotifier = ValueNotifier<String>("");
   late final TabController _tabController;
 
   void _listen() => setState(() {});
@@ -100,7 +100,7 @@ class _DartCompilerAppState extends State<DartCompilerApp>
   Future<void> _runCode() async {
     _tabController.animateTo(1);
     _unfocus();
-    _outputNotifier.value = '';
+    _outputNotifier.value = "";
 
     try {
       final compiler = Compiler();
@@ -146,7 +146,7 @@ class _DartCompilerAppState extends State<DartCompilerApp>
     final imports =
         importRegex.allMatches(i).map((m) => m.group(0)!.trim()).toSet();
 
-    String cleanedCode = i.replaceAll(importRegex, '').trim();
+    String cleanedCode = i.replaceAll(importRegex, "").trim();
 
     String formattedCode;
     try {

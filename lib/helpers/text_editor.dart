@@ -10,7 +10,7 @@ class TextEditor {
   final state = ValueNotifier(TextEditorState(
       undoStack: [],
       redoStack: [],
-      currentText: '',
+      currentText: "",
       canUndo: false,
       canRedo: false));
 
@@ -73,10 +73,10 @@ class TextEditorState {
 
 String getPreviousLine(String text, int offset) {
   final lines = text.substring(0, offset).split('\n');
-  return lines.isNotEmpty ? lines.last : '';
+  return lines.isNotEmpty ? lines.last : "";
 }
 
 String getLeadingSpaces(String line) {
   final match = RegExp(r'^(\s*)').firstMatch(line);
-  return match?.group(0) ?? '';
+  return match?.group(0) ?? "";
 }
