@@ -14,6 +14,7 @@ class CourseDetails extends StatefulWidget {
 }
 
 class _CourseDetailsState extends State<CourseDetails> {
+  final tocController = TocController();
   final courses = {
     "Basics": [
       CourseModel(title: "Introduction", path: "assets/courses/main.md", id: 0),
@@ -177,6 +178,7 @@ class _CourseDetailsState extends State<CourseDetails> {
                                     if (courseData != null) {
                                       courseNotifier.value = courseData;
                                       loadData(courseData.path ?? "");
+                                      tocController.jumpToIndex(0);
                                     }
                                   },
                                   child: Padding(
@@ -241,7 +243,12 @@ class _CourseDetailsState extends State<CourseDetails> {
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
               child: Column(
                 children: [
-                  Expanded(child: MarkdownWidget(data: dataStr)),
+                  Expanded(
+                    child: MarkdownWidget(
+                      data: dataStr,
+                      tocController: tocController,
+                    ),
+                  ),
                 ],
               ),
             ),
