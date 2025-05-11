@@ -218,6 +218,10 @@ class _CourseDetailsState extends State<CourseDetails> {
     loadData(courseNotifier.value.path ?? "");
   }
 
+  MarkdownConfig config = isDarkTheme.value
+      ? MarkdownConfig.darkConfig
+      : MarkdownConfig.defaultConfig;
+
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder(
@@ -253,7 +257,7 @@ class _CourseDetailsState extends State<CourseDetails> {
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
                       itemBuilder: (_, i) {
-                        final listOfCourses = courses.keys.toList()..sort();
+                        final listOfCourses = courses.keys.toList();
 
                         final category = listOfCourses.toList()[i];
                         return Column(
@@ -270,7 +274,7 @@ class _CourseDetailsState extends State<CourseDetails> {
                                   ),
                             ),
                             ListView.separated(
-                              padding: EdgeInsets.only(bottom: 50),
+                              padding: const EdgeInsets.only(bottom: 50),
                               separatorBuilder: (_, __) => Divider(
                                 color: Theme.of(context).dividerColor,
                               ),
@@ -326,6 +330,9 @@ class _CourseDetailsState extends State<CourseDetails> {
                       return GestureDetector(
                         onTap: () {
                           isDarkTheme.value = !isDarkTheme.value;
+                          config = !isDark
+                              ? MarkdownConfig.darkConfig
+                              : MarkdownConfig.defaultConfig;
                         },
                         child: Icon(
                           isDark ? Icons.sunny : Icons.dark_mode,
@@ -356,6 +363,7 @@ class _CourseDetailsState extends State<CourseDetails> {
                   Expanded(
                     child: MarkdownWidget(
                       data: dataStr,
+                      config: config,
                       tocController: tocController,
                     ),
                   ),

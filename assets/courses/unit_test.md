@@ -1,7 +1,7 @@
 # Unit Testing (Basic)
 
-Imagine you have a **toy car** 🚗, and you want to make sure that every time you press a button, it goes forward. You *
-*test** it by pressing the button to see if it works, again and again, to make sure the toy car **does what you expect
+Imagine you have a **toy car** 🚗, and you want to make sure that every time you press a button, it goes forward. You
+**test** it by pressing the button to see if it works, again and again, to make sure the toy car **does what you expect
 **.
 
 Unit testing is like **testing parts** (called **units**) of your program to make sure they behave correctly. Instead of
