@@ -86,69 +86,111 @@ class _CourseDetailsState extends State<CourseDetails> {
       CourseModel(
         title: "Enums",
         path: "assets/courses/enum.md",
-        id: 24,
+        id: 13,
       ),
       CourseModel(
         title: "Null Safety",
         path: "assets/courses/null_safe.md",
-        id: 13,
+        id: 14,
       ),
     ],
     "Intermediate": [
       CourseModel(
         title: "Classes and objects",
         path: "assets/courses/classes.md",
-        id: 14,
+        id: 15,
       ),
       CourseModel(
         title: "Inheritance",
         path: "assets/courses/inheritance.md",
-        id: 15,
+        id: 16,
       ),
       CourseModel(
         title: "Abstract Class",
         path: "assets/courses/abstract_class.md",
-        id: 16,
+        id: 17,
       ),
       CourseModel(
         title: "Mixins",
         path: "assets/courses/mixins.md",
-        id: 17,
+        id: 18,
       ),
       CourseModel(
         title: "Getters and Setters",
         path: "assets/courses/getters_setters.md",
-        id: 18,
+        id: 19,
       ),
       CourseModel(
         title: "Anonymous Functions",
         path: "assets/courses/anonymous_functions.md",
-        id: 19,
+        id: 21,
       ),
       CourseModel(
         title: "Higher-Order Functions",
         path: "assets/courses/higher_order_function.md",
-        id: 20,
+        id: 21,
       ),
       CourseModel(
         title: "Closures",
         path: "assets/courses/closure.md",
-        id: 21,
-      ),
-      CourseModel(
-        title: "Asynchronous functions",
-        path: "assets/courses/async_await.md",
-        id: 25,
+        id: 22,
       ),
       CourseModel(
         title: "Try-Catch, finally",
         path: "assets/courses/try_catch_finally.md",
-        id: 22,
+        id: 23,
       ),
       CourseModel(
         title: "Custom Exception",
         path: "assets/courses/custom_exception.md",
-        id: 23,
+        id: 24,
+      ),
+    ],
+    "Advanced": [
+      CourseModel(
+        title: "Futures",
+        path: "assets/courses/future.md",
+        id: 25,
+      ),
+      CourseModel(
+        title: "Async/Await",
+        path: "assets/courses/async_await.md",
+        id: 26,
+      ),
+      CourseModel(
+        title: "Streams",
+        path: "assets/courses/stream.md",
+        id: 26,
+      ),
+      CourseModel(
+        title: "Generics",
+        path: "assets/courses/generics.md",
+        id: 26,
+      ),
+      CourseModel(
+        title: "Extension Methods",
+        path: "assets/courses/extension.md",
+        id: 26,
+      ),
+      CourseModel(
+        title: "Sealed Classes",
+        path: "assets/courses/sealed_classes.md",
+        id: 26,
+      ),
+      CourseModel(
+        title: "Unit Testing (Basic)",
+        path: "assets/courses/unit_test.md",
+        id: 26,
+      ),
+      CourseModel(
+        title: "Isolates",
+        path: "assets/courses/isolates.md",
+        id: 26,
+      ),
+      CourseModel(
+        title: "Collection Methods",
+        path: "assets/courses/collection_method.md",
+        id: 26,
       ),
     ]
   };
