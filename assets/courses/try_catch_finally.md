@@ -1,7 +1,5 @@
 # try-catch-finally
 
-## 🧠 What’s `try-catch-finally`?
-
 Imagine you're trying to open a **cookie jar** 🍪 on the top shelf.
 You **try** to get it, but OOPS! 😱 You knock it over and it breaks 💥
 

@@ -61,8 +61,6 @@ class TextEditor {
       canRedo: state.value.redoStack.isNotEmpty,
     );
     cacheService.saveCode(_currentText);
-
-    print("kkkkk ${_currentText}");
   }
 }
 

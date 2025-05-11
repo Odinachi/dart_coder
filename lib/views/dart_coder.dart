@@ -98,6 +98,7 @@ class _DartCompilerAppState extends State<DartCompilerApp>
   }
 
   Future<void> _runCode() async {
+    cacheService.saveCode(controller.fullText);
     _tabController.animateTo(1);
     _unfocus();
     _outputNotifier.value = "";

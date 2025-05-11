@@ -1,7 +1,5 @@
 # Abstract Classes
 
-## 🖼️ What is an Abstract Class?
-
 Imagine you draw a **picture of an animal** 🐾
 
 You know animals can:
