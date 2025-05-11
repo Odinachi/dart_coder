@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 final ThemeData lightTheme = ThemeData(
   brightness: Brightness.light,
   primaryColor: Colors.blue,
+  dividerColor: Colors.blueGrey.withOpacity(.3),
   scaffoldBackgroundColor: Colors.white,
   textTheme: const TextTheme(
     bodyLarge: TextStyle(color: Colors.black87),
@@ -59,6 +60,7 @@ final darkTheme = ThemeData(
     ),
   ),
   iconTheme: const IconThemeData(color: Colors.white),
+  dividerColor: Colors.blueGrey,
   tabBarTheme: const TabBarTheme(
     labelColor: Colors.white,
     unselectedLabelColor: Colors.white70,
