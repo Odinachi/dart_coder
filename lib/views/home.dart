@@ -1,4 +1,5 @@
 import 'package:dartcoder/helpers/assets.dart';
+import 'package:dartcoder/helpers/navigation/router.dart';
 import 'package:flutter/material.dart';
 
 import '../helpers/theme.dart';
@@ -67,22 +68,27 @@ class HomeScreen extends StatelessWidget {
                   const SizedBox(
                     height: 20,
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Editor',
-                        style: textStyle.copyWith(
-                          color: AppColors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 17,
+                  GestureDetector(
+                    onTap: () {
+                      AppRouter.push(AppRouter.editor);
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Editor',
+                          style: textStyle.copyWith(
+                            color: AppColors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 17,
+                          ),
                         ),
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Icon(Icons.arrow_forward)
-                    ],
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Icon(Icons.arrow_forward)
+                      ],
+                    ),
                   ),
                   const SizedBox(
                     height: 50,

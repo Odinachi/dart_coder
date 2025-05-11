@@ -23,4 +23,7 @@ class AppRouter {
   static const String courseDetails = "/course_details";
   static const String home = "/";
   static const String editor = "/editor";
+
+  static Future push(String routeName, {Object? arg}) async =>
+      await navKey.currentState?.pushNamed(routeName, arguments: arg);
 }

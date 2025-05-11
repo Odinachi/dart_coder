@@ -10,6 +10,7 @@ void main() {
         valueListenable: isDarkTheme,
         builder: (_, isDark, __) {
           return MaterialApp(
+            navigatorKey: AppRouter.navKey,
             themeMode: isDark ? ThemeMode.dark : ThemeMode.light,
             theme: lightTheme,
             darkTheme: darkTheme,

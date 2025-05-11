@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:dart_eval/dart_eval.dart';
 import 'package:dart_style/dart_style.dart';
+import 'package:dartcoder/helpers/theme.dart';
 import 'package:dartcoder/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_code_editor/flutter_code_editor.dart';
@@ -173,79 +174,68 @@ class _DartCompilerAppState extends State<DartCompilerApp>
                     ),
                     shape: BoxShape.circle,
                   ),
-                  child: const Icon(
+                  child: Icon(
                     Icons.play_arrow,
                     size: 50,
+                    color: Theme.of(context).primaryColor,
                   )),
             )
           : null,
       appBar: AppBar(
         leadingWidth: 90,
-        leading: ValueListenableBuilder(
-            valueListenable: editor.state,
-            builder: (_, state, __) {
-              return Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  SizedBox(
-                    width: 20,
-                  ),
-                  GestureDetector(
-                    onTap: state.canUndo
-                        ? () {
-                            editor.undo();
-                            controller.text = editor.text;
-                          }
-                        : null,
-                    child: Icon(
-                      color: state.canUndo
-                          ? null
-                          : Theme.of(context).iconTheme.color?.withOpacity(.5),
-                      Icons.undo,
-                      size: 30,
-                    ),
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  GestureDetector(
-                    onTap: state.canRedo
-                        ? () {
-                            editor.redo();
-                            controller.text = editor.text;
-                          }
-                        : null,
-                    child: Icon(
-                      color: state.canRedo
-                          ? null
-                          : Theme.of(context).iconTheme.color?.withOpacity(.5),
-                      Icons.redo,
-                      size: 30,
-                    ),
-                  ),
-                ],
-              );
-            }),
         centerTitle: true,
         title: const Text('Dart Coder'),
         actions: [
-          GestureDetector(
-            onTap: () {
-              // controller.text = DartFormatter().format(controller.fullText);
-              controller.text = beautify(controller.text);
-            },
-            child: Container(
-                margin: const EdgeInsets.only(right: 20),
-                child: const Icon(Icons.brush)),
-          ),
           ValueListenableBuilder(
-              valueListenable: isDarkTheme,
-              builder: (_, isDark, __) {
-                return GestureDetector(
-                    onTap: () {
-                      isDarkTheme.value = !isDarkTheme.value;
-                    },
-                    child: Icon(isDark ? Icons.sunny : Icons.dark_mode));
+              valueListenable: editor.state,
+              builder: (_, state, __) {
+                return Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    SizedBox(
+                      width: 20,
+                    ),
+                    GestureDetector(
+                      onTap: state.canUndo
+                          ? () {
+                              editor.undo();
+                              controller.text = editor.text;
+                            }
+                          : null,
+                      child: Icon(
+                        color: state.canUndo
+                            ? null
+                            : Theme.of(context)
+                                .iconTheme
+                                .color
+                                ?.withOpacity(.5),
+                        Icons.undo,
+                        size: 30,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    GestureDetector(
+                      onTap: state.canRedo
+                          ? () {
+                              editor.redo();
+                              controller.text = editor.text;
+                            }
+                          : null,
+                      child: Icon(
+                        color: state.canRedo
+                            ? null
+                            : Theme.of(context)
+                                .iconTheme
+                                .color
+                                ?.withOpacity(.5),
+                        Icons.redo,
+                        size: 30,
+                      ),
+                    ),
+                  ],
+                );
               }),
           PopupMenuButton(
             initialValue: null,
@@ -253,10 +243,33 @@ class _DartCompilerAppState extends State<DartCompilerApp>
               if (v == "clear") {
                 editor.setText(baseCode);
                 controller.text = baseCode;
+              } else if (v == "format") {
+                controller.text = beautify(controller.text);
+              } else if (v == "theme") {
+                isDarkTheme.value = !isDarkTheme.value;
               }
             },
             itemBuilder: (BuildContext context) => <PopupMenuEntry>[
               const PopupMenuItem(value: "clear", child: Text('Clear')),
+              const PopupMenuItem(value: "format", child: Text('Format')),
+              PopupMenuItem(
+                  value: "theme",
+                  child: ValueListenableBuilder(
+                      valueListenable: isDarkTheme,
+                      builder: (_, isDark, __) {
+                        return Row(
+                          children: [
+                            Icon(
+                              isDark ? Icons.sunny : Icons.dark_mode,
+                              color: isDark ? AppColors.white : AppColors.black,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 3.0),
+                              child: Text("Theme"),
+                            ),
+                          ],
+                        );
+                      })),
             ],
             child: const Padding(
               padding: EdgeInsets.symmetric(horizontal: 20.0),
