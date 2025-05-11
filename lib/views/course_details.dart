@@ -161,37 +161,37 @@ class _CourseDetailsState extends State<CourseDetails> {
       CourseModel(
         title: "Streams",
         path: "assets/courses/stream.md",
-        id: 26,
+        id: 27,
       ),
       CourseModel(
         title: "Generics",
         path: "assets/courses/generics.md",
-        id: 26,
+        id: 28,
       ),
       CourseModel(
         title: "Extension Methods",
         path: "assets/courses/extension.md",
-        id: 26,
+        id: 29,
       ),
       CourseModel(
         title: "Sealed Classes",
         path: "assets/courses/sealed_classes.md",
-        id: 26,
+        id: 30,
       ),
       CourseModel(
         title: "Unit Testing (Basic)",
         path: "assets/courses/unit_test.md",
-        id: 26,
+        id: 31,
       ),
       CourseModel(
         title: "Isolates",
         path: "assets/courses/isolates.md",
-        id: 26,
+        id: 32,
       ),
       CourseModel(
         title: "Collection Methods",
         path: "assets/courses/collection_method.md",
-        id: 26,
+        id: 33,
       ),
     ]
   };
@@ -204,10 +204,14 @@ class _CourseDetailsState extends State<CourseDetails> {
     ),
   );
 
-  void loadData(String path) async {
-    await rootBundle.loadString(path).then((e) {
+  void loadData(CourseModel course) async {
+    await rootBundle.loadString(course.path ?? "").then((e) {
       dataStr = e;
+      courseNotifier.value = course;
+      showNav.value = false;
       setState(() {});
+
+      tocController.jumpToIndex(0);
     });
   }
 
@@ -216,7 +220,7 @@ class _CourseDetailsState extends State<CourseDetails> {
   @override
   void initState() {
     super.initState();
-    loadData(courseNotifier.value.path ?? "");
+    loadData(courseNotifier.value);
     showNav.value = false;
   }
 
@@ -294,10 +298,7 @@ class _CourseDetailsState extends State<CourseDetails> {
                                     AppRouter.pop();
 
                                     if (courseData != null) {
-                                      courseNotifier.value = courseData;
-                                      loadData(courseData.path ?? "");
-                                      tocController.jumpToIndex(0);
-                                      showNav.value = false;
+                                      loadData(courseData);
                                     }
                                   },
                                   child: Padding(
@@ -378,6 +379,7 @@ class _CourseDetailsState extends State<CourseDetails> {
                       return true;
                     },
                     child: MarkdownWidget(
+                      padding: EdgeInsets.only(bottom: 150),
                       data: dataStr,
                       config: config,
                       tocController: tocController,
@@ -393,13 +395,33 @@ class _CourseDetailsState extends State<CourseDetails> {
                           child: AnimatedBottomNav(
                             isVisible: show,
                             onPrevious: () {
-                              // Handle previous action
+                              if (courseNotifier.value.id != 0) {
+                                final item = courses.values
+                                    .toList()
+                                    .reduce((value, element) => value + element)
+                                    .where((e) =>
+                                        e.id == (courseNotifier.value.id! - 1))
+                                    .firstOrNull;
+                                if (item != null) {
+                                  loadData(item);
+                                }
+                              }
                             },
                             onEditor: () {
-                              // Handle editor action
+                              AppRouter.push(AppRouter.editor);
                             },
                             onNext: () {
-                              // Handle next action
+                              if (courseNotifier.value.id != 33) {
+                                final item = courses.values
+                                    .toList()
+                                    .reduce((value, element) => value + element)
+                                    .where((e) =>
+                                        e.id == (courseNotifier.value.id! + 1))
+                                    .firstOrNull;
+                                if (item != null) {
+                                  loadData(item);
+                                }
+                              }
                             },
                           ),
                         );
