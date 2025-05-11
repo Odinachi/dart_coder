@@ -26,4 +26,6 @@ class AppRouter {
 
   static Future push(String routeName, {Object? arg}) async =>
       await navKey.currentState?.pushNamed(routeName, arguments: arg);
+
+  static void pop({Object? arg}) async => navKey.currentState?.pop(arg);
 }

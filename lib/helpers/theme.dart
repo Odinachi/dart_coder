@@ -74,8 +74,3 @@ class AppColors {
   static const black = Colors.black;
   static const grey = Colors.grey;
 }
-
-const textStyle = TextStyle(
-  color: AppColors.black,
-  fontSize: 14,
-);

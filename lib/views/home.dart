@@ -44,11 +44,11 @@ class HomeScreen extends StatelessWidget {
                   Text(
                     "Dart Coder",
                     textAlign: TextAlign.center,
-                    style: textStyle.copyWith(
-                      color: AppColors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 30,
-                    ),
+                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                          color: AppColors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 30,
+                        ),
                   ),
                   const SizedBox(
                     height: 5, // Reduced spacing between title and subtitle
@@ -56,19 +56,17 @@ class HomeScreen extends StatelessWidget {
                   Text(
                     "No laptop? No worries!\nLearn and practice Dart on the go.",
                     textAlign: TextAlign.center,
-                    style: textStyle.copyWith(
-                      color: AppColors.grey,
-                      fontSize: 14,
-                    ),
+                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                          color: AppColors.grey,
+                          fontSize: 14,
+                        ),
                   ),
                   const SizedBox(
                     height: 50,
                   ),
-                  _button(
-                      text: "Dart Course",
-                      onTap: () {
-                        AppRouter.push(AppRouter.courseDetails);
-                      }),
+                  _button(context, text: "Dart Course", onTap: () {
+                    AppRouter.push(AppRouter.courseDetails);
+                  }),
                   const SizedBox(
                     height: 20,
                   ),
@@ -81,11 +79,12 @@ class HomeScreen extends StatelessWidget {
                       children: [
                         Text(
                           'Editor',
-                          style: textStyle.copyWith(
-                            color: AppColors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 17,
-                          ),
+                          style:
+                              Theme.of(context).textTheme.bodyLarge?.copyWith(
+                                    color: AppColors.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 17,
+                                  ),
                         ),
                         SizedBox(
                           width: 10,
@@ -106,7 +105,8 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  Widget _button({required String text, VoidCallback? onTap}) {
+  Widget _button(BuildContext context,
+      {required String text, VoidCallback? onTap}) {
     return GestureDetector(
       onTap: onTap,
       child: Container(
@@ -121,11 +121,11 @@ class HomeScreen extends StatelessWidget {
         child: Text(
           text,
           textAlign: TextAlign.center,
-          style: textStyle.copyWith(
-            color: AppColors.white,
-            fontWeight: FontWeight.bold,
-            fontSize: 18,
-          ),
+          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                color: AppColors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 18,
+              ),
         ),
       ),
     );

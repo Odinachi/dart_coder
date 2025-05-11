@@ -1,3 +1,4 @@
+import 'package:dartcoder/helpers/navigation/router.dart';
 import 'package:flutter/material.dart';
 
 import '../main.dart';
@@ -10,14 +11,22 @@ class CourseDetails extends StatelessWidget {
     return Scaffold(
       endDrawer: Container(
         width: MediaQuery.of(context).size.width * .8,
+        padding: const EdgeInsets.symmetric(horizontal: 20),
         decoration:
             BoxDecoration(color: Theme.of(context).scaffoldBackgroundColor),
         child: SafeArea(
           child: Column(
             children: [
               Row(
+                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Icon(Icons.close, color: Theme.of(context).iconTheme.color),
+                  IconButton(
+                    onPressed: () {
+                      AppRouter.pop();
+                    },
+                    icon: Icon(Icons.close),
+                    color: Theme.of(context).textTheme.bodyLarge?.color,
+                  ),
                 ],
               )
             ],
