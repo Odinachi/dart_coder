@@ -64,7 +64,11 @@ class HomeScreen extends StatelessWidget {
                   const SizedBox(
                     height: 50,
                   ),
-                  _button(text: "Dart Course"),
+                  _button(
+                      text: "Dart Course",
+                      onTap: () {
+                        AppRouter.push(AppRouter.courseDetails);
+                      }),
                   const SizedBox(
                     height: 20,
                   ),
@@ -102,23 +106,26 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  Widget _button({required String text}) {
-    return Container(
-      decoration: BoxDecoration(
-        color: AppColors.blue,
-        borderRadius: BorderRadius.circular(5),
-      ),
-      padding: const EdgeInsets.symmetric(
-        vertical: 10,
-        horizontal: 30,
-      ),
-      child: Text(
-        text,
-        textAlign: TextAlign.center,
-        style: textStyle.copyWith(
-          color: AppColors.white,
-          fontWeight: FontWeight.bold,
-          fontSize: 18,
+  Widget _button({required String text, VoidCallback? onTap}) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        decoration: BoxDecoration(
+          color: AppColors.blue,
+          borderRadius: BorderRadius.circular(5),
+        ),
+        padding: const EdgeInsets.symmetric(
+          vertical: 10,
+          horizontal: 30,
+        ),
+        child: Text(
+          text,
+          textAlign: TextAlign.center,
+          style: textStyle.copyWith(
+            color: AppColors.white,
+            fontWeight: FontWeight.bold,
+            fontSize: 18,
+          ),
         ),
       ),
     );
