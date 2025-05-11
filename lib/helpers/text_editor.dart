@@ -1,11 +1,19 @@
 import 'package:flutter/cupertino.dart';
 
+import '../services/cache_service.dart';
+
 class TextEditor {
-  static final TextEditor _instance = TextEditor._internal();
+  final CacheService cacheService;
 
-  factory TextEditor() => _instance;
+  // Singleton implementation with dependency injection
+  static TextEditor? _instance;
 
-  TextEditor._internal();
+  factory TextEditor({required CacheService cacheService}) {
+    _instance ??= TextEditor._internal(cacheService: cacheService);
+    return _instance!;
+  }
+
+  TextEditor._internal({required this.cacheService});
 
   final state = ValueNotifier(TextEditorState(
       undoStack: [],
@@ -52,6 +60,9 @@ class TextEditor {
       canUndo: state.value.undoStack.length > 1,
       canRedo: state.value.redoStack.isNotEmpty,
     );
+    cacheService.saveCode(_currentText);
+
+    print("kkkkk ${_currentText}");
   }
 }
 

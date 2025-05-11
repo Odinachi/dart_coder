@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:dart_eval/dart_eval.dart';
 import 'package:dart_style/dart_style.dart';
+import 'package:dartcoder/helpers/navigation/router.dart';
 import 'package:dartcoder/helpers/theme.dart';
 import 'package:dartcoder/main.dart';
 import 'package:flutter/material.dart';
@@ -30,8 +31,6 @@ class _DartCompilerAppState extends State<DartCompilerApp>
 
   void _listen() => setState(() {});
 
-  final editor = TextEditor();
-
   Timer? _debounce;
 
   final baseCode = '''void main() {
@@ -40,7 +39,7 @@ class _DartCompilerAppState extends State<DartCompilerApp>
 
   @override
   void initState() {
-    controller.text = baseCode;
+    controller.text = cacheService.getCode() ?? baseCode;
     editor.setText(controller.fullText);
     _tabController = TabController(length: 2, vsync: this)
       ..addListener(_listen);
@@ -184,6 +183,16 @@ class _DartCompilerAppState extends State<DartCompilerApp>
       appBar: AppBar(
         leadingWidth: 90,
         centerTitle: true,
+        leading: GestureDetector(
+          onTap: () {
+            if (_tabController.index == 0) {
+              AppRouter.pop();
+            } else {
+              _tabController.animateTo(0);
+            }
+          },
+          child: Icon(Icons.arrow_back_ios),
+        ),
         title: const Text('Dart Coder'),
         actions: [
           ValueListenableBuilder(
