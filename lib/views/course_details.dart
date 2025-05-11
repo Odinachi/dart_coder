@@ -1,5 +1,6 @@
 import 'package:dartcoder/helpers/navigation/router.dart';
 import 'package:dartcoder/models/course_model.dart';
+import 'package:dartcoder/views/widgets/animted_nav.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:markdown_widget/markdown_widget.dart';
@@ -216,11 +217,14 @@ class _CourseDetailsState extends State<CourseDetails> {
   void initState() {
     super.initState();
     loadData(courseNotifier.value.path ?? "");
+    showNav.value = false;
   }
 
   MarkdownConfig config = isDarkTheme.value
       ? MarkdownConfig.darkConfig
       : MarkdownConfig.defaultConfig;
+
+  final showNav = ValueNotifier(false);
 
   @override
   Widget build(BuildContext context) {
@@ -293,6 +297,7 @@ class _CourseDetailsState extends State<CourseDetails> {
                                       courseNotifier.value = courseData;
                                       loadData(courseData.path ?? "");
                                       tocController.jumpToIndex(0);
+                                      showNav.value = false;
                                     }
                                   },
                                   child: Padding(
@@ -358,15 +363,47 @@ class _CourseDetailsState extends State<CourseDetails> {
             ),
             body: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
-              child: Column(
+              child: Stack(
                 children: [
-                  Expanded(
+                  NotificationListener(
+                    onNotification: (ScrollNotification notification) {
+                      if (notification is ScrollEndNotification) {
+                        if (notification.metrics.pixels >=
+                            notification.metrics.maxScrollExtent - 20) {
+                          showNav.value = true;
+                        } else {
+                          showNav.value = false;
+                        }
+                      }
+                      return true;
+                    },
                     child: MarkdownWidget(
                       data: dataStr,
                       config: config,
                       tocController: tocController,
                     ),
                   ),
+                  ValueListenableBuilder(
+                      valueListenable: showNav,
+                      builder: (_, show, __) {
+                        return Positioned(
+                          left: 0,
+                          right: 0,
+                          bottom: 0,
+                          child: AnimatedBottomNav(
+                            isVisible: show,
+                            onPrevious: () {
+                              // Handle previous action
+                            },
+                            onEditor: () {
+                              // Handle editor action
+                            },
+                            onNext: () {
+                              // Handle next action
+                            },
+                          ),
+                        );
+                      })
                 ],
               ),
             ),
