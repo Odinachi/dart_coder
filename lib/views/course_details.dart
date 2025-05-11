@@ -22,6 +22,66 @@ class _CourseDetailsState extends State<CourseDetails> {
         path: "assets/courses/variables.md",
         id: 1,
       ),
+      CourseModel(
+        title: "Operators",
+        path: "assets/courses/operators.md",
+        id: 2,
+      ),
+      CourseModel(
+        title: "Comments",
+        path: "assets/courses/comments.md",
+        id: 3,
+      ),
+      CourseModel(
+        title: "Input/Output",
+        path: "assets/courses/input_output.md",
+        id: 4,
+      ),
+      CourseModel(
+        title: "Control Flow",
+        path: "assets/courses/control_flow.md",
+        id: 5,
+      ),
+      CourseModel(
+        title: "Switch case",
+        path: "assets/courses/switch_case.md",
+        id: 6,
+      ),
+      CourseModel(
+        title: "For Loops",
+        path: "assets/courses/for_loops.md",
+        id: 7,
+      ),
+      CourseModel(
+        title: "While Loops",
+        path: "assets/courses/while_loop.md",
+        id: 8,
+      ),
+      CourseModel(
+        title: "Do-While Loops",
+        path: "assets/courses/do_while.md",
+        id: 9,
+      ),
+      CourseModel(
+        title: "List",
+        path: "assets/courses/list.md",
+        id: 10,
+      ),
+      CourseModel(
+        title: "Sets",
+        path: "assets/courses/sets.md",
+        id: 11,
+      ),
+      CourseModel(
+        title: "Maps",
+        path: "assets/courses/map.md",
+        id: 12,
+      ),
+      CourseModel(
+        title: "Functions",
+        path: "assets/courses/functions.md",
+        id: 12,
+      ),
     ],
   };
 
