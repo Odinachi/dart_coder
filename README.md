@@ -1,7 +1,6 @@
 # **Dart Coder**
 
-A Flutter-based Dart code execution environment with a built-in compiler, theme customization, and an upcoming *
-*complete Dart tutorial** with **assignments**. Inspired by DartPad.
+A Flutter-based Dart code execution environment with a built-in compiler, theme customization, and a **complete Dart tutorial** with **assignments**. Inspired by DartPad.
 
 ## **Features**
 
@@ -9,8 +8,13 @@ A Flutter-based Dart code execution environment with a built-in compiler, theme 
 - 🌗 Dark & Light mode support
 - 🎨 Customizable syntax highlighting themes
 - 📝 Code formatting for better readability
-- 📚 **(Upcoming)** Full Dart tutorials and assignments
+- 📚 Complete Dart course from beginner to advance
+- 💾 All codes are now being saved automatically
+- ⏭️ Easy navigation between tutorials with next and previous buttons
 - 🎨 **(Designers Welcome!)** Open for UI/UX improvements
+
+## **Todo**
+- 📊 Save user progress across sessions
 
 ## **Setup & Installation**
 
