@@ -43,15 +43,7 @@ Output:
 To find out what's under the "Tree":
 
 ```dart
-print
-(
-treasureMap
-[
-'
-Tree
-'
-]
-); // prints: Candy 🍬
+print(treasureMap['Tree']); // prints: Candy 🍬
 ```
 
 You're using the **key** ("Tree") to get the **value** ("Candy")!
@@ -63,11 +55,7 @@ You're using the **key** ("Tree") to get the **value** ("Candy")!
 You find another spot on the map:
 
 ```dart
-treasureMap['
-River']
-=
-'
-Fish';
+treasureMap['River']='Fish';
 
 print(treasureMap);
 ```
@@ -85,14 +73,9 @@ Now your map has:
 Someone stole your gold! 😱
 
 ```dart
-treasureMap.remove
-('X
-'
-);
+treasureMap.remove('X');
 
-print(
-treasureMap
-);
+print(treasureMap);
 ```
 
 Gold is gone:
@@ -108,9 +91,7 @@ Gold is gone:
 You can look at everything on your map:
 
 ```dart
-treasureMap.forEach
-(
-(key, value) {
+treasureMap.forEach((key, value) {
 print('$key has $value');
 });
 ```

@@ -37,10 +37,7 @@ void main() {
 This tells you what’s **left over** after dividing.
 
 ```dart
-print
-(7 %
-2
-); // 1 (because 2 goes into 7 three times, and 1 is left)
+print(7 % 2 ); // 1 (because 2 goes into 7 three times, and 1 is left)
 ```
 
 ---
@@ -50,10 +47,7 @@ print
 These help Dart ask **yes or no** questions (true or false):
 
 ```dart
-print
-(5 >
-3
-); // true (5 is bigger than 3)
+print(5 > 3); // true (5 is bigger than 3)
 print(4 < 2); // false (4 is not smaller than 2)
 print(6 == 6); // true (they’re equal)
 print(7 != 5); // true (they are different)
@@ -89,15 +83,9 @@ These are like traffic lights — they help make decisions:
 bool hasCandy = true;
 bool isHappy = true;
 
-print
-(
-hasCandy && isHappy); // true (both are true)
+print(hasCandy && isHappy); // true (both are true)
 print(hasCandy || false); // true (one is true)
-print
-(
-!
-isHappy
-); // false (the opposite)
+print(!isHappy); // false (the opposite)
 ```
 
 - `&&` means "and"

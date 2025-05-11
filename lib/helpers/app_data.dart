@@ -109,7 +109,7 @@ class AppData {
       CourseModel(
         title: "Anonymous Functions",
         path: "assets/courses/anonymous_functions.md",
-        id: 21,
+        id: 20,
       ),
       CourseModel(
         title: "Higher-Order Functions",

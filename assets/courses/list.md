@@ -43,13 +43,7 @@ Each toy in your box has a **number**, starting at 0:
 You can get any toy by its number:
 
 ```dart
-print
-(
-toys
-[
-1
-]
-); // prints: Car 🚗
+print(toys[1]); // prints: Car 🚗
 ```
 
 ---
@@ -59,12 +53,8 @@ toys
 Want to add more toys to the box?
 
 ```dart
-toys.add
-('Puzzle
-'
-);print(
-toys
-); // [Teddy, Car, Yo-yo, Puzzle 🧩]
+toys.add('Puzzle');
+print(toys); // [Teddy, Car, Yo-yo, Puzzle 🧩]
 ```
 
 ---
@@ -74,12 +64,8 @@ toys
 Time to give a toy to a friend?
 
 ```dart
-toys.remove
-('Car
-'
-);print(
-toys
-); // [Teddy, Yo-yo, Puzzle]
+toys.remove('Car');
+print(toys); // [Teddy, Yo-yo, Puzzle]
 ```
 
 ---

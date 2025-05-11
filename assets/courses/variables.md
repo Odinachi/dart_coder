@@ -83,12 +83,7 @@ For example:
 ```dart
 
 int number = 10;
-print
-(
-number
-+
-5
-); // 15
+print(number+5); // 15
 ```
 
 You can **add** numbers, but you can’t add `true` + `"car"` — that would confuse Dart!

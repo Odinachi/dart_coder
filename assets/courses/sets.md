@@ -36,12 +36,8 @@ Output:
 Now if you add another `'Red'`:
 
 ```dart
-apples.add
-('Red
-'
-);print(
-apples
-);
+apples.add('Red');
+print(apples);
 ```
 
 Output is still:
