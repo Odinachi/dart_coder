@@ -38,6 +38,7 @@ dependencies:
   flutter_code_editor: ^0.3.3
   dart_style: 2.3.7
   markdown_widget: ^2.3.2+8
+  shared_preferences: ^2.5.3
 
 
 
