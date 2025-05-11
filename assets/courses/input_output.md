@@ -1,7 +1,5 @@
 # Input and Output
 
-## 👂 What is Input?
-
 Imagine you're at a candy shop 🍭. The shopkeeper asks, "What candy do you want?" and you say "Chocolate!"
 
 That’s **input** — you’re **giving information** to the program.

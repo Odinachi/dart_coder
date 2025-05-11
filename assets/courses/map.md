@@ -1,7 +1,5 @@
 # Maps
 
-## 🗺️ What is a Map?
-
 Imagine a **treasure map** 🗺️
 
 Each spot has a label (like “X” or “Tree”) and a hidden treasure behind it:

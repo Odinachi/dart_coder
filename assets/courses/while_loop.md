@@ -1,7 +1,5 @@
 # While Loops
 
-## 🐰 What is a While Loop?
-
 Imagine you're a bunny 🐇 jumping over a fence. You jump **while** the sun is still out ☀️
 
 As long as the sun is shining, you **keep jumping**!

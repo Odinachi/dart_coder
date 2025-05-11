@@ -1,7 +1,5 @@
 # Sets
 
-## 🍎 What is a Set?
-
 Imagine you’re collecting apples 🍎
 
 You only want **one of each color**:

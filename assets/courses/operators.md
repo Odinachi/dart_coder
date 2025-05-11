@@ -1,7 +1,5 @@
 # Operators
 
-## 🎮 What Are Operators?
-
 Imagine you’re playing with toy blocks. You have:
 
 - 2 red blocks

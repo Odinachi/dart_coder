@@ -1,7 +1,5 @@
 # Switch-Case
 
-## 🎯 What is Switch-Case?
-
 Imagine you're at an ice cream shop 🍦
 
 The person asks: “What flavor do you want?”

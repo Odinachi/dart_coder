@@ -1,7 +1,5 @@
 # Comments
 
-## 💬 What Are Comments?
-
 Imagine you're drawing a picture and you write a little note to tell people what it is.
 
 For example: “This is a dog 🐶” — that little note doesn’t change the picture, it just **helps people understand**.

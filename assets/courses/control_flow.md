@@ -1,7 +1,5 @@
 # Control Flow
 
-## 🎮 What is Control Flow?
-
 Imagine you're playing a game, and the game says:
 
 - If you have a red key, go into the red door 🚪🔴

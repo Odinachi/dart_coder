@@ -1,7 +1,5 @@
 # Lists
 
-## 📦 What is a List?
-
 Imagine you have a toy box. Inside, you put:
 
 * 🧸 Teddy

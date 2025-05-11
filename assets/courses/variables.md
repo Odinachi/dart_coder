@@ -1,7 +1,5 @@
 # Variables
 
-## 🎈 What is a Variable?
-
 Imagine you have a box. You can put your toy car in it, close the box, and give the box a name like "myBox". Later, you
 can open "myBox" and take out the toy car.
 

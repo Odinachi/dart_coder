@@ -1,7 +1,5 @@
 # Functions
 
-## 🍳 What is a Function?
-
 Imagine you have a **robot helper** 🤖 in the kitchen.
 You press a button, and it **makes you pancakes** 🥞.
 

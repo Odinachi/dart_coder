@@ -1,7 +1,5 @@
 # Do-While Loops
 
-## 🍪 What Is a Do-While Loop?
-
 Imagine you’re at grandma’s house and she gives you a cookie 🍪
 
 Even if you're full, you **must eat at least one** (because it's grandma!)

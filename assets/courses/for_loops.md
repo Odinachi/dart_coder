@@ -1,7 +1,5 @@
 # For Loops
 
-## 🔁 What is a For Loop?
-
 Imagine your teacher says: "Color 5 stars ⭐⭐⭐⭐⭐"
 
 You start with the first one, then the second, third… until you finish all 5!
