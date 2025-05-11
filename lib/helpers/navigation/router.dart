@@ -6,7 +6,7 @@ import 'package:flutter/cupertino.dart';
 class AppRouter {
   static final navKey = GlobalKey<NavigatorState>();
 
-  Route generateRoute(RouteSettings settings) {
+  static Route generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case courseDetails:
         return CupertinoPageRoute(builder: (_) => const CourseDetails());

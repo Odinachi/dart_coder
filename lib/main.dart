@@ -1,5 +1,5 @@
+import 'package:dartcoder/helpers/navigation/router.dart';
 import 'package:dartcoder/helpers/theme.dart';
-import 'package:dartcoder/views/dart_coder.dart';
 import 'package:flutter/material.dart';
 
 final isDarkTheme = ValueNotifier<bool>(true);
@@ -13,8 +13,9 @@ void main() {
             themeMode: isDark ? ThemeMode.dark : ThemeMode.light,
             theme: lightTheme,
             darkTheme: darkTheme,
-            home: const DartCompilerApp(),
             debugShowCheckedModeBanner: false,
+            onGenerateRoute: AppRouter.generateRoute,
+            initialRoute: AppRouter.home,
           );
         }),
   );
