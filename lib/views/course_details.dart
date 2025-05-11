@@ -135,7 +135,7 @@ class _CourseDetailsState extends State<CourseDetails> {
                         ),
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     Expanded(
@@ -197,7 +197,7 @@ class _CourseDetailsState extends State<CourseDetails> {
                           ],
                         );
                       },
-                      separatorBuilder: (_, __) => SizedBox(
+                      separatorBuilder: (_, __) => const SizedBox(
                         height: 10,
                       ),
                       itemCount: courses.keys.length,
@@ -223,7 +223,7 @@ class _CourseDetailsState extends State<CourseDetails> {
                         ),
                       );
                     }),
-                SizedBox(
+                const SizedBox(
                   width: 20,
                 ),
                 Builder(builder: (context) {
@@ -231,10 +231,10 @@ class _CourseDetailsState extends State<CourseDetails> {
                     onTap: () {
                       Scaffold.of(context).openEndDrawer();
                     },
-                    child: Icon(Icons.menu),
+                    child: const Icon(Icons.menu),
                   );
                 }),
-                SizedBox(
+                const SizedBox(
                   width: 20,
                 )
               ],
