@@ -1,4 +1,4 @@
-# **Dart Coder**
+# **Dartlane**
 
 A Flutter-based Dart code execution environment with a built-in compiler, theme customization, and a **complete Dart tutorial** with **assignments**. Inspired by DartPad.
 
@@ -21,7 +21,7 @@ A Flutter-based Dart code execution environment with a built-in compiler, theme 
 1. **Clone the Repository**
    ```sh
    git clone https://github.com/Odinachi/dartcoder.git
-   cd dartcoder
+   cd dartly
    ```  
 
 2. **Install Dependencies**

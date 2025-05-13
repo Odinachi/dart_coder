@@ -1,6 +1,7 @@
 import 'package:dartcoder/helpers/assets.dart';
 import 'package:dartcoder/helpers/navigation/router.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 import '../helpers/theme.dart';
 
@@ -9,22 +10,19 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: AppColors.white,
       body: Stack(
         children: [
+           Image.asset(
+             AppAssets.nerd,
+             height: size.height,
+             width: size.width,
+             fit: BoxFit.cover,
+           ),
           Container(
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  AppColors.white,
-                  AppColors.blue,
-                ],
-              ),
-            ),
-          ),
-          Container(
-            color: AppColors.black.withOpacity(.6),
+            color: AppColors.black.withOpacity(.95),
           ),
           SafeArea(
             child: Padding(
@@ -34,15 +32,13 @@ class HomeScreen extends StatelessWidget {
                 children: [
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 40.0),
-                    child: Image.asset(
-                      AppAssets.dartPng,
-                    ),
+                    child: Lottie.asset(AppAssets.animate)
                   ),
                   const SizedBox(
                     height: 30,
                   ),
                   Text(
-                    "Dart Coder",
+                    "Dartlane",
                     textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                           color: AppColors.white,

@@ -34,7 +34,7 @@ class _DartCompilerAppState extends State<DartCompilerApp>
   Timer? _debounce;
 
   final baseCode = '''void main() {
-  print("Hello, Dart Coder!");
+  print("Hello, Dart Lane!");
 }''';
 
   @override
@@ -194,7 +194,7 @@ class _DartCompilerAppState extends State<DartCompilerApp>
           },
           child: Icon(Icons.arrow_back_ios),
         ),
-        title: const Text('Dart Coder'),
+        title: const Text('Dart Lane'),
         actions: [
           ValueListenableBuilder(
               valueListenable: editor.state,
